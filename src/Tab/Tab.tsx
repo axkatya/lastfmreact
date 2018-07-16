@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
+import { Component } from "react";
+import * as React from 'react';
 
-class Tab extends React.Component {
+interface Props {
+  id: string;
+  activeTab: string;
+  onClick(id: any): void;
+}
 
-	constructor(props) {
+class Tab extends Component<Props> {
+  props: Props;
+
+  constructor(props: Props) {
 		super(props);
 		
 		this.onClick = this.onClick.bind(this);
 	}
 
 	onClick() {
-		const { label, onClick } = this.props;
-		onClick(label);
+		const { id, onClick } = this.props;
+		onClick(id);
 	}
 
 	render() {
@@ -18,13 +26,13 @@ class Tab extends React.Component {
 			onClick,
 			props: {
 				activeTab,
-				label,
+				id,
 			},
 		} = this;
 
 		let className = 'tab-list-item';
 
-		if (activeTab === label) {
+		if (activeTab === id) {
 			className += ' tab-list-active';
 		}
 
@@ -33,7 +41,7 @@ class Tab extends React.Component {
 				className={className}
 				onClick={this.onClick}
 			>
-				{label}
+				{id}
 			</li>
 		);
 	}
