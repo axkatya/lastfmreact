@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ArtistItem from "./ArtistItem";
 
 import axios from 'axios';
 
@@ -7,8 +8,6 @@ class Artist extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-
 
 		this.searchArtist = this.searchArtist.bind(this);
 
@@ -35,6 +34,7 @@ class Artist extends React.Component {
 	render() {
 		return (
 			<div className="todoListMain">
+				Artists
 				<div className="header">
 					<form onSubmit={this.searchArtist}>
 						<input ref={(a) => this._inputElement = a}
@@ -43,7 +43,7 @@ class Artist extends React.Component {
 						<button type="submit">Search Artist</button>
 					</form>
 				</div>
-				{this.state.artist.name} :  <a href={this.state.artist.url}>Link to LastFM</a>
+				<ArtistItem entries={this.state.artist} />
 			</div>
 
 		);

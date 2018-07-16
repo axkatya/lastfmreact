@@ -4,12 +4,8 @@ class Tab extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-
-
+		
 		this.onClick = this.onClick.bind(this);
-
-
 	}
 
 	onClick() {
