@@ -5,52 +5,52 @@ import AlbumList from "./AlbumList";
 import axios from 'axios';
 
 class AlbumSearch extends Component<any, any> {
-  private inputElement: HTMLInputElement;
+    private inputElement: HTMLInputElement;
 
-  constructor(props: any) {
-    super(props);
+    constructor(props: any) {
+        super(props);
 
-    this.searchAlbum = this.searchAlbum.bind(this);
+        this.searchAlbum = this.searchAlbum.bind(this);
 
-    this.state = {
-      albums: []
-    };
-  }
-
-  searchAlbum(event: any): void {
-
-    if (this.inputElement.value !== "") {
-
-      axios.get('http://ws.audioscrobbler.com/2.0/?method=album.search&album=' +
-          this.inputElement.value +
-          '&api_key=91c70ecd632c37f12855243d9526cc6f&format=json')
-        .then(response => {
-          this.setState({
-            albums: response.data.results.albummatches.album
-          });
-        });
+        this.state = {
+            albums: []
+        };
     }
-    event.preventDefault();
-  }
 
-  render() {
-    return (
-      <div>
-        Albums
+    searchAlbum(event: any): void {
+
+        if (this.inputElement.value !== "") {
+
+            axios.get('http://ws.audioscrobbler.com/2.0/?method=album.search&album=' +
+                this.inputElement.value +
+                '&api_key=91c70ecd632c37f12855243d9526cc6f&format=json')
+                .then(response => {
+                    this.setState({
+                        albums: response.data.results.albummatches.album
+                    });
+                });
+        }
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <div>
+                Albums
 				<div>
-          <form onSubmit={this.searchAlbum}>
-            <input ref={(a: HTMLInputElement) => this.inputElement = a}
-              placeholder="enter album name">
-            </input>
-            <button type="submit">Search Album</button>
-          </form>
-        </div>
+                    <form onSubmit={this.searchAlbum}>
+                        <input ref={(a: HTMLInputElement) => this.inputElement = a}
+                            placeholder="enter album name">
+                        </input>
+                        <button type="submit">Search Album</button>
+                    </form>
+                </div>
 
-        <AlbumList entries={this.state.albums} />
+                <AlbumList entries={this.state.albums} />
 
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
 export default AlbumSearch;

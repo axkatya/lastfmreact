@@ -3,29 +3,29 @@ import * as React from 'react';
 import AlbumItem from "../Album/AlbumItem";
 
 interface Props {
-	entries: Album[];
+    entries: Album[];
 }
 
 class AlbumList extends Component<Props> {
-	props: Props;
+    props: Props;
 
-	addAlbum(item: Album) {
-		if (item != null) {
-		  return <AlbumItem entry={item}/>;
-		}
-		return;
-	}
+    addAlbum(item: Album) {
+        if (item != null) {
+            return <AlbumItem entry={item} />;
+        }
+        return;
+    }
 
-	render() {
-		var albumEntries = this.props.entries;
-		var listItems = albumEntries.map(this.addAlbum);
+    render() {
+        var albumEntries = this.props.entries;
+        var listItems = albumEntries.map(this.addAlbum);
 
-		return (
-      <ul>
-				{listItems}
-			</ul>
-		);
-	}
+        return (
+            <ul>
+                {listItems}
+            </ul>
+        );
+    }
 };
 
 export default AlbumList;

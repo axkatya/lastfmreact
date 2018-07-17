@@ -1,5 +1,5 @@
 interface Artist {
-  name: string;
-	url: string;
-		bio: Bio;
+    name: string;
+    url: string;
+    bio: Bio;
 }

@@ -16,7 +16,8 @@
 	border-width: 1px 1px 0 1px;
 }
 
-Link {
+
+a {
   color: inherit;
   text-decoration: inherit;
 }

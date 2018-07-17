@@ -1,42 +1,42 @@
 import { Component } from "react";
 import {
-  Route,
-  Link,
-  BrowserRouter as Router
+    Route,
+    Link,
+    BrowserRouter as Router
 } from 'react-router-dom';
 import * as React from 'react';
 import ArtistSearch from "../Artist/ArtistSearch";
 
 interface Props {
-  entry: Album;
+    entry: Album;
 }
 
 class AlbumItem extends Component<Props> {
-  props: Props;
+    props: Props;
 
-  showAlbum(item: Album) {
-    if (item != null) {
-      return <li key={item.name}>{item.name}:
+    showAlbum(item: Album) {
+        if (item != null) {
+            return <li key={item.name}>{item.name}:
                <Router>
-          <div>
-            <Link to="/artists/:artistName">{item.artist}</Link>
-            <Route path="/artists/:artistName" component={ArtistSearch}></Route>
-          </div>
-        </Router>
-        - <a href={item.url}>Link to LastFM</a></li>;
+                    <div>
+                        <Link to="/artists/:artistName">{item.artist}</Link>
+                        <Route path="/artists/:artistName" component={ArtistSearch}></Route>
+                    </div>
+                </Router>
+                - <a href={item.url}>Link to LastFM</a></li>;
+        }
+        return;
     }
-    return;
-  }
 
-  render() {
-    var albumEntry = this.props.entry;
+    render() {
+        var albumEntry = this.props.entry;
 
-    return (
-      <ul>
-        {this.showAlbum(albumEntry)}
-      </ul>
-    );
-  }
+        return (
+            <ul>
+                {this.showAlbum(albumEntry)}
+            </ul>
+        );
+    }
 };
 
 export default AlbumItem;
