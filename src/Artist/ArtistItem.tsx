@@ -10,8 +10,14 @@ class ArtistItem extends Component<Props> {
 
     showArtist(item: Artist) {
         if (item !== null && item !== undefined && item.name.length > 0) {
+            const image = item.image
+                .filter((img) => img['size'] === 'large')
+                .map((img) =>
+                    <img src={img['#text']} />
+            );
 
             return <div>{item.name} :  <a href={item.url}>Link to LastFM</a>
+                {image}
                 <p>Biography</p>
                 <p>Summary</p>
                 {item.bio.summary}

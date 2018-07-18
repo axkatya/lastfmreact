@@ -16,8 +16,18 @@ class AlbumItem extends Component<Props> {
 
     showAlbum(item: Album) {
         if (item != null) {
+
+            const image = item.image
+                .filter((img) => img['size'] === 'large')
+                .map((img) =>
+                    <img src={img['#text']} />
+                );
+
             return <li key={item.name}>{item.name}:
-               <Router>
+
+                {image}
+
+                <Router>
                     <div>
                         <Link to="/artists/:artistName">{item.artist}</Link>
                         <Route path="/artists/:artistName" component={ArtistSearch}></Route>

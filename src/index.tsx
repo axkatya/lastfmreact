@@ -25,7 +25,7 @@ ReactDOM.render(
                     <NavLink className="tab-list-item" activeClassName="tab-list-active" to="/albums">Albums</NavLink >
                     <NavLink className="tab-list-item" activeClassName="tab-list-active" to="/artists">Artists</NavLink >
                 </div>
-                <Route path="/" component={AlbumSearch} />
+                <Route exact path="/" component={AlbumSearch} />
                 <Route path="/albums" component={AlbumSearch}></Route>
                 <Route path="/artists" component={ArtistSearch}></Route>
                 <Route path="/artists/:artistName" component={ArtistSearch}></Route>
