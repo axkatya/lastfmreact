@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import AlbumItems from "./AlbumItems";
+import { Component } from "react";
+import * as React from 'react';
+import AlbumList from "./AlbumList";
 
 import axios from 'axios';
 
-class AlbumList extends React.Component {
+class AlbumSearch extends Component<any, any> {
+  private inputElement: HTMLInputElement;
 
-
-  constructor(props) {
+  constructor(props: any) {
     super(props);
-
-
 
     this.searchAlbum = this.searchAlbum.bind(this);
 
@@ -18,41 +17,40 @@ class AlbumList extends React.Component {
     };
   }
 
-  searchAlbum(e) {
+  searchAlbum(event: any): void {
 
-    this._inputElement.value = 'love';
-    if (this._inputElement.value !== "") {
+    if (this.inputElement.value !== "") {
 
       axios.get('http://ws.audioscrobbler.com/2.0/?method=album.search&album=' +
-        this._inputElement.value +
+        this.inputElement.value +
         '&api_key=91c70ecd632c37f12855243d9526cc6f&format=json')
         .then(response => {
           this.setState({
             albums: response.data.results.albummatches.album
           });
-        })
+        });
     }
-    e.preventDefault();
+    event.preventDefault();
   }
 
   render() {
     return (
-      <div className="todoListMain">
-        <div className="header">
+      <div className="container__search">
+        Albums
+				<div>
           <form onSubmit={this.searchAlbum}>
-            <input ref={(a) => this._inputElement = a}
+            <input ref={(a: HTMLInputElement) => this.inputElement = a}
               placeholder="enter album name">
             </input>
             <button type="submit">Search Album</button>
           </form>
         </div>
-        <ul>
-          <AlbumItems entries={this.state.albums} />
-        </ul>
+
+        <AlbumList entries={this.state.albums} />
 
       </div>
     );
   }
 }
 
-export default AlbumList;
+export default AlbumSearch;
