@@ -59,7 +59,7 @@ class ArtistSearch extends Component<Props, State> {
 	render() {
 		var artist = this.addArtist(this.state);
 		return (
-			<div >
+      <div className="container__search">
 				Artists
 				<div>
 					<form onSubmit={this.searchArtist}>
