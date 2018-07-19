@@ -10,11 +10,12 @@ class ArtistItem extends Component<Props> {
 
   showArtist(item: Artist) {
     if (item !== null && item !== undefined && item.name.length > 0) {
-      const image = item.image
-        .filter((img) => img['size'] === 'large')
-        .map((img) =>
-          <img src={img['#text']} />
-        );
+
+      const filter = Array.prototype.filter;
+      const filteredArray = filter.call(item.image, (img: any) => img['size'] === 'large');
+
+      const map = Array.prototype.map;
+      const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
       return <div>
         <div className="container__itemname">

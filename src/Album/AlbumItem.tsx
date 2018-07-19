@@ -17,11 +17,11 @@ class AlbumItem extends Component<Props> {
   showAlbum(item: Album) {
     if (item != null) {
 
-      const image = item.image
-        .filter((img) => img['size'] === 'large')
-        .map((img) =>
-          <img src={img['#text']} />
-        );
+      const filter = Array.prototype.filter;
+      const filteredArray = filter.call(item.image, (img: any) => img['size'] === 'large');
+
+      const map = Array.prototype.map;
+      const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
       return <li key={item.name}>
         <div className="container__itemname">
