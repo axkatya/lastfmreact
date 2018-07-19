@@ -22,9 +22,9 @@ class AlbumList extends Component<Props> {
 
     return (
       <div className="container__list">
-        <ul>
+       
           {listItems}
-        </ul>
+
       </div>
     );
   }

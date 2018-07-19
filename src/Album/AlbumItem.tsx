@@ -23,24 +23,28 @@ class AlbumItem extends Component<Props> {
       const map = Array.prototype.map;
       const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
-      return <li key={item.name}>
-        <div className="container__itemname">
-          {item.name}
-        </div>
-        <div className="container__itemimage">
-          {image}
-        </div>
-        <div className="container__iteminfo">
+      return <div className="container__card">
+        <div className="card__item">
+         
+          <div className="card__itemimage">
+            {image}
+          </div >
+          <div className="card__itemname">
+            {item.name}
+          </div>
+          <div className="card__iteminfo">
 
-          <Router>
-            <div>
-              <Link to="/artists/:artistName">{item.artist}</Link>
-              <Route path="/artists/:artistName" component={ArtistSearch}></Route>
-            </div>
-          </Router>
-          <a href={item.url}>Link to LastFM</a>
+            <Router>
+              <div>
+                <Link to="/artists/:artistName">{item.artist}</Link>
+                <Route path="/artists/:artistName" component={ArtistSearch}></Route>
+              </div>
+            </Router>
+            <a href={item.url}>Link to LastFM</a>
+          </div>
         </div>
-      </li>;
+      </div>;
+
     }
     return;
   }
@@ -50,13 +54,13 @@ class AlbumItem extends Component<Props> {
 
     return (
       <div className="container__list">
-        <ul>
+          <ul>
 
-          {this.showAlbum(albumEntry)}
+            {this.showAlbum(albumEntry)}
 
-        </ul>
-      </div>
-    );
+          </ul>
+        </div>
+        );
   }
 };
 

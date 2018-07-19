@@ -1,3 +1,9 @@
+body {
+  font-family: "Amaranth", sans-serif;
+  text-align: center;
+  background-color: #edf3f8;
+}
+
 .grid-container {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
@@ -23,21 +29,49 @@
 .container__card {
   grid-column: 1 / 3;
   grid-row: 3/5;
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+  box-sizing: border-box;
 }
 
-.container__itemname {
-  grid-column: 1 / 2;
-  grid-row: 3/4;
+.card__item {
+  display: inline-block;
+  width: 100%;
+  max-width: 350px;
+  margin: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  background: #fff;
+  box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }
 
-.container__itemimage {
-  grid-column: 2 / 3;
-  grid-row: 3/4;
+.card__itemname {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
 }
 
-.container__iteminfo {
-  grid-column: 1 / 3;
-  grid-row: 4/5;
+.card__itemsubtitle {
+  font-size: 13px;
+  margin-top: 5px;
+  font-weight: 400;
+  padding: 0;
+}
+
+.card__itemimage {
+  max-width: 100%;
+}
+
+.card__iteminfo {
+  font-size: 13px;
+  margin-top: 5px;
+  padding: 0;
 }
 
 .tablist {
@@ -58,8 +92,3 @@
 	border-width: 1px 1px 0 1px;
 }
 
-
-.a {
-  color: inherit;
-  text-decoration: inherit;
-}
