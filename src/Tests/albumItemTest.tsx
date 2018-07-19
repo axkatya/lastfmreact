@@ -1,6 +1,6 @@
 import AlbumItem from '../Album/AlbumItem';
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 test('AlbumItem renders the text inside it', () => {
   const album = ({
