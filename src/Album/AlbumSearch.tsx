@@ -35,21 +35,20 @@ class AlbumSearch extends Component<any, any> {
 
   render() {
     return (
-      <div className="container__search">
-        Albums
+      <div>
+        <div className="container__search">
+          Albums
 				<div>
-          <form onSubmit={this.searchAlbum}>
-            <input ref={(a: HTMLInputElement) => this.inputElement = a}
-              placeholder="enter album name">
-            </input>
-            <button type="submit">Search Album</button>
-          </form>
+            <form onSubmit={this.searchAlbum}>
+              <input ref={(a: HTMLInputElement) => this.inputElement = a}
+                placeholder="enter album name">
+              </input>
+              <button className="btn" type="submit">Search Album</button>
+            </form>
+          </div>
         </div>
-
         <AlbumList entries={this.state.albums} />
-
-      </div>
-    );
+      </div>);
   }
 }
 

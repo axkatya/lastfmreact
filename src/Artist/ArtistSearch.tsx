@@ -65,8 +65,9 @@ class ArtistSearch extends Component<Props, State> {
 					<form onSubmit={this.searchArtist}>
 						<input ref={(a: HTMLInputElement) => this.inputElement = a}
 							placeholder="enter artist name">
-						</input>
-						<button type="submit">Search Artist</button>
+            </input>
+
+            <button className="btn" type="submit">Search Artist</button>
 					</form>
 				</div>
 

@@ -18,11 +18,10 @@ class ArtistItem extends Component<Props> {
       const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
       return <div className="container__card">
+        <div className="card__itemimage">
+          {image}
+        </div>
         <div className="card__item">
-         
-          <div className="card__itemimage">
-            {image}
-          </div>
           <div className="card__itemname">
             {item.name}
           </div>
@@ -44,7 +43,7 @@ class ArtistItem extends Component<Props> {
     var artist = this.showArtist(this.props.entry);
 
     return (
-      <div className="container__card">
+      <div>
         {artist}
       </div>
     );
