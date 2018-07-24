@@ -39,7 +39,7 @@ class AlbumItem extends Component<Props> {
 
               <Router>
                 <div>
-                  <Link to="/artists/:artistName">{item.artist}</Link>
+                  <Link to={{ pathname: '/artists/' + item.artist }}>{item.artist}</Link>
                   <Route path="/artists/:artistName" component={ArtistSearch}></Route>
                 </div>
               </Router>

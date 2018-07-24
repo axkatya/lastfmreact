@@ -4,6 +4,8 @@ import * as ReactDOM from "react-dom";
 import {
   Route,
   NavLink,
+  Switch,
+  Redirect,
   BrowserRouter as Router
 } from 'react-router-dom';
 
@@ -25,10 +27,13 @@ ReactDOM.render(
           <NavLink className="tablist__item" activeClassName="tablist__item--active" to="/albums">Albums</NavLink >
           <NavLink className="tablist__item" activeClassName="tablist__item--active" to="/artists">Artists</NavLink >
         </div>
-        <Route exact path="/" component={AlbumSearch} />
-        <Route path="/albums" component={AlbumSearch}></Route>
-        <Route path="/artists" component={ArtistSearch}></Route>
-        <Route path="/artists/:artistName" component={ArtistSearch}></Route>
+        <Switch>
+          <Route exact path="/" component={AlbumSearch} />
+          <Route path="/albums" component={AlbumSearch}></Route>
+          <Route path="/artists" component={ArtistSearch}></Route>
+          <Route path="/artists/:artistName" component={ArtistSearch}></Route>
+          <Redirect to="/" />
+        </Switch>
       </div>
     </Router>
   </div>,

@@ -1,7 +1,6 @@
 import { Component } from "react";
 import * as React from 'react';
 import ArtistItem from "./ArtistItem";
-
 import axios from 'axios';
 
 interface State {
@@ -9,7 +8,7 @@ interface State {
 }
 
 interface Props {
-	params: any;
+  match: any;
 }
 
 class ArtistSearch extends Component<Props, State> {
@@ -19,13 +18,12 @@ class ArtistSearch extends Component<Props, State> {
 	constructor(props: Props) {
 		super(props);
 		this.props = props;
-		this.searchArtist = this.searchArtist.bind(this);
-	}
+    this.searchArtist = this.searchArtist.bind(this);
 
-	componentDidMount() {
-		if (this.props.params != null && this.props.params.artist != null && this.props.params.artist.length > 0) {
-			this.getArtist(this.props.params.artist);
-		}
+	  console.log(this.props.match.params.artistName);
+    if (this.props.match != null && this.props.match.params != null && this.props.match.params.artistName.length > 0) {
+      this.getArtist(this.props.match.params.artistName);
+	  }
 	}
 
 	getArtist(artistNameSearch: string) {
@@ -40,7 +38,6 @@ class ArtistSearch extends Component<Props, State> {
 	}
 
 	searchArtist(event: any): void {
-
 
 		if (this.inputElement.value !== "") {
 			this.getArtist(this.inputElement.value);

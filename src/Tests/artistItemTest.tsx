@@ -12,6 +12,6 @@ test('ArtistItem renders the text inside it', () => {
   const wrapper = shallow(
       <ArtistItem entry={artist} />
   );
-    const p = wrapper.find('.container__itemname');
+  const p = wrapper.find('.card__itemname');
   expect(p.text()).toBe('Cher');
 });
