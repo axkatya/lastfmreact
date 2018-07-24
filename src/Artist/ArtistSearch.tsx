@@ -8,7 +8,7 @@ interface State {
 }
 
 interface Props {
-  match: any;
+  location?: any;
 }
 
 class ArtistSearch extends Component<Props, State> {
@@ -20,9 +20,13 @@ class ArtistSearch extends Component<Props, State> {
 		this.props = props;
     this.searchArtist = this.searchArtist.bind(this);
 
-	  console.log(this.props.match.params.artistName);
-    if (this.props.match != null && this.props.match.params != null && this.props.match.params.artistName.length > 0) {
-      this.getArtist(this.props.match.params.artistName);
+
+    var slashPosition = this.props.location.pathname.lastIndexOf('/');
+    var artistName = this.props.location.pathname.substring(slashPosition + 1);
+
+    if (artistName != null && artistName.length > 0) {
+      console.log(artistName);
+      this.getArtist(artistName);
 	  }
 	}
 

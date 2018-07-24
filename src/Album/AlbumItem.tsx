@@ -2,6 +2,8 @@ import { Component } from "react";
 import {
   Route,
   Link,
+  Redirect,
+  RouteComponentProps,
   BrowserRouter as Router
 } from 'react-router-dom';
 import * as React from 'react';
@@ -11,8 +13,24 @@ interface Props {
   entry: Album;
 }
 
+
 class AlbumItem extends Component<Props> {
   props: Props;
+
+  state = {
+    redirect: false
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  }
+  renderRedirect = (artistName: string) => {
+    if (this.state.redirect) {
+      return <Redirect to={{ pathname: '/artists/' + artistName }} />;
+    };
+  }
 
   showAlbum(item: Album) {
     if (item != null) {
@@ -21,6 +39,7 @@ class AlbumItem extends Component<Props> {
       const filteredArray = filter.call(item.image, (img: any) => img['size'] === 'large');
 
       const map = Array.prototype.map;
+
       const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
       return (
@@ -37,13 +56,14 @@ class AlbumItem extends Component<Props> {
             </div>
             <div className="card__iteminfo">
 
-              <Router>
-                <div>
-                  <Link to={{ pathname: '/artists/' + item.artist }}>{item.artist}</Link>
-                  <Route path="/artists/:artistName" component={ArtistSearch}></Route>
-                </div>
-              </Router>
-              <a href={item.url}>Link to LastFM</a>
+              {this.renderRedirect(item.artist)}
+              <p>
+                <button className="btn--link" onClick={this.setRedirect}>{item.artist}</button>
+              </p>
+
+              <p>
+                <a href={item.url}>Link to LastFM</a>
+              </p>
             </div>
           </div>
         </div>);

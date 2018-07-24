@@ -31,7 +31,7 @@ ReactDOM.render(
           <Route exact path="/" component={AlbumSearch} />
           <Route path="/albums" component={AlbumSearch}></Route>
           <Route path="/artists" component={ArtistSearch}></Route>
-          <Route path="/artists/:artistName" component={ArtistSearch}></Route>
+          <Route path="/artists(/:artistName)" component={ArtistSearch}></Route>
           <Redirect to="/" />
         </Switch>
       </div>
