@@ -4,7 +4,9 @@ import ArtistItem from "./ArtistItem";
 import axios from 'axios';
 
 interface State {
-	artist: Artist;
+  artist?: Artist;
+  topAlbums?: Album[];
+  topTracks?: Track[];
 }
 
 interface Props {
@@ -25,9 +27,11 @@ class ArtistSearch extends Component<Props, State> {
     var artistName = this.props.location.pathname.substring(slashPosition + 1);
 
     if (artistName != null && artistName.length > 0) {
-      console.log(artistName);
+
       this.getArtist(artistName);
-	  }
+      this.getTopAlbums(artistName);
+      this.getTopTracks(artistName);
+    }
 	}
 
 	getArtist(artistNameSearch: string) {
@@ -41,20 +45,53 @@ class ArtistSearch extends Component<Props, State> {
 			});
 	}
 
+  getTopTracks(artistNameSearch: string) {
+    axios.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=' +
+        artistNameSearch +
+        '&api_key=91c70ecd632c37f12855243d9526cc6f&format=json')
+      .then(response => {
+        this.setState({
+          topTracks: response.data.toptracks.track 
+        });
+      });
+  }
+
+  getTopAlbums(artistNameSearch: string) {
+    axios.get('http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=' +
+        artistNameSearch +
+        '&api_key=91c70ecd632c37f12855243d9526cc6f&format=json')
+      .then(response => {
+        this.setState({
+          topAlbums: response.data.topalbums.album
+        });
+      });
+  }
+
 	searchArtist(event: any): void {
 
 		if (this.inputElement.value !== "") {
-			this.getArtist(this.inputElement.value);
+      this.getArtist(this.inputElement.value);
+      this.getTopAlbums(this.inputElement.value);
+		  this.getTopTracks(this.inputElement.value);
 		}
 
 		event.preventDefault();
 	}
 
 	addArtist(state: State) {
-		if (state != null && state.artist != null) {
-			return <ArtistItem entry={state.artist} />;
+    if (state != null && state.artist != null) {
+
+      if (state.topAlbums != null && state.topTracks != null && state.topAlbums != undefined && state.topTracks != undefined) {
+        return <ArtistItem entry={state.artist} topAlbums={state.topAlbums} topTracks={state.topTracks}/>;
+      } else if (state.topAlbums != null && state.topAlbums != undefined) {
+        return <ArtistItem entry={state.artist} topAlbums={state.topAlbums} topTracks={null}/>;
+      } else if (state.topTracks != null && state.topTracks != undefined) {
+        return <ArtistItem entry={state.artist} topAlbums={null} topTracks={state.topTracks} />;
+      } else{
+        return <ArtistItem entry={state.artist} topAlbums={null} topTracks={null}/>;
+      }
 		}
-		return;
+		return null;
 	}
 
 	render() {
@@ -70,10 +107,9 @@ class ArtistSearch extends Component<Props, State> {
 
             <button className="btn" type="submit">Search Artist</button>
 					</form>
-				</div>
+        </div>
 
 				{artist}
-
 
 			</div>
 		);

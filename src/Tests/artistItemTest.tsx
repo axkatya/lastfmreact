@@ -9,8 +9,36 @@ test('ArtistItem renders the text inside it', () => {
     image: {}
     , bio: {published:'', summary: 'summary 1123425', content: 'content235456'}}) as Artist;
 
+  const topAlbums = [
+    {
+      name: 'love',
+      url: 'http://',
+      image: {}
+    },
+    {
+      name: 'believe',
+      url: 'http://',
+      image: {}
+
+    }
+  ] as Album[];
+
+  const topTracks = [
+    {
+      name: 'love',
+      url: 'http://',
+      listeners: 30
+    },
+    {
+      name: 'believe',
+      url: 'http://',
+      listeners: 20
+
+    }
+  ] as Track[];
+
   const wrapper = shallow(
-      <ArtistItem entry={artist} />
+    <ArtistItem entry={artist} topAlbums={topAlbums} topTracks={topTracks}/>
   );
   const p = wrapper.find('.card__itemname');
   expect(p.text()).toBe('Cher');

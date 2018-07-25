@@ -13,20 +13,25 @@ class AlbumList extends Component<Props> {
     if (item != null) {
       return <AlbumItem entry={item} />;
     }
-    return;
+    return null;
   }
 
   render() {
     var albumEntries = this.props.entries;
-    var listItems = albumEntries.map(this.addAlbum);
 
-    return (
-      <div className="container__list">
-       
+    if (albumEntries != null) {
+      var listItems = albumEntries.map(this.addAlbum);
+
+      return (
+        <div className="container__list">
+
           {listItems}
 
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 };
 

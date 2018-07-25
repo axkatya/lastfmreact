@@ -1,8 +1,12 @@
 import { Component } from "react";
 import * as React from 'react';
+import AlbumList from "../Album/AlbumList";
+import TrackList from "../Track/TrackList";
 
 interface Props {
   entry: Artist;
+  topAlbums?: Album[];
+  topTracks?: Track[];
 }
 
 class ArtistItem extends Component<Props> {
@@ -17,11 +21,35 @@ class ArtistItem extends Component<Props> {
       const map = Array.prototype.map;
       const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
 
-      return <div className="container__card">
+      console.log('showArtist of ArtistItem topAlbums');
+      console.log(this.props.topAlbums);
+
+
+      let topAlbums: any = null;
+      if (this.props.topAlbums != null && this.props.topAlbums != undefined) {
+        topAlbums = <div>
+          <p className="card__itemsubtitle">
+            Top Albums
+          </p>
+          <AlbumList entries={this.props.topAlbums} />
+        </div>;
+      }
+
+      let topTracks: any = null;
+      if (this.props.topTracks != null && this.props.topTracks != undefined) {
+        topTracks = <div>
+          <p className="card__itemsubtitle">
+            Top Tracks
+          </p>
+          <TrackList entries={this.props.topTracks} />
+        </div>;
+      }
+
+      return <div>
         <div className="card__itemimage">
           {image}
         </div>
-        <div className="card__item">
+        <div>
           <div className="card__itemname">
             {item.name}
           </div>
@@ -34,12 +62,16 @@ class ArtistItem extends Component<Props> {
             {item.bio.content}
           </div>
         </div>
+
+        {topTracks}
+        {topAlbums}
       </div>;
     }
-    return <div></div>;
+    return null;
   }
 
   render() {
+
     var artist = this.showArtist(this.props.entry);
 
     return (

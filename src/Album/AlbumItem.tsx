@@ -39,8 +39,26 @@ class AlbumItem extends Component<Props> {
       const filteredArray = filter.call(item.image, (img: any) => img['size'] === 'large');
 
       const map = Array.prototype.map;
-
       const image = map.call(filteredArray, (img: any) => <img src={img['#text']} />);
+
+      const redirectItem = this.renderRedirect(item.artist);
+      var artistLink: any = null;
+      if (typeof item.artist === 'string') {
+        artistLink = <div> 
+          {redirectItem}
+          <p>
+            <button className="btn--link" onClick={this.setRedirect}>{item.artist}</button>
+          </p >
+        </div>;
+      }
+
+      var albumListeners: any = null;
+      if (item.playcount != null) {
+
+        albumListeners = <div>
+          {item.playcount} listeners
+                       </div >;
+      }
 
       return (
         <div className="container__card">
@@ -50,17 +68,13 @@ class AlbumItem extends Component<Props> {
 
           <div className="card__item">
 
-
             <div className="card__itemname">
               {item.name}
             </div>
             <div className="card__iteminfo">
 
-              {this.renderRedirect(item.artist)}
-              <p>
-                <button className="btn--link" onClick={this.setRedirect}>{item.artist}</button>
-              </p>
-
+              {artistLink}
+              {albumListeners}
               <p>
                 <a href={item.url}>Link to LastFM</a>
               </p>
@@ -68,7 +82,7 @@ class AlbumItem extends Component<Props> {
           </div>
         </div>);
     }
-    return;
+    return null;
   }
 
   render() {
