@@ -51,13 +51,13 @@
 		"typescript": "^2.9.2",
 		"webpack": "^4.16.1",
 		"webpack-cli": "^3.0.8",
-		"webpack-dev-server": "^3.1.4"
+		"webpack-dev-server": "^3.1.14"
 	},
 	"dependencies": {
 		"@types/react-dom": "^16.0.6",
 		"@types/react-router-dom": "^4.2.7",
 		"axios": "^0.18.0",
-		"jest-cli": "^23.4.0",
+		"jest-cli": "^23.6.0",
 		"jest-config": "^23.4.0",
 		"prop-types": "^15.6.2",
 		"react": "^16.4.1",
